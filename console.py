@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-""" Console Module CM """
+""" Console Module """
 import cmd
-from datetime import datetime
+import sys
 import re
 import os
-import sys
+from datetime import datetime
 import uuid
-
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
@@ -52,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
         if not ('.' in line and '(' in line and ')' in line):
             return line
 
-        try:  # parse line left to right
+        try:  # parse the line left to right
             pline = line[:]  # parsed line
 
             # isolate <class name>
@@ -107,6 +106,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """ Handles EOF to exit program """
+        print()
         exit(0)
 
     def help_EOF(self):
@@ -115,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """ Overrides the emptyline method of CMD """
-        return False
+        pass
 
     def do_create(self, args):
         """ Create an object of any class"""
@@ -369,6 +369,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
